@@ -1,23 +1,34 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Development') {
             steps {
-                echo 'Building...'
-                // Tambahkan perintah build di sini, misalnya `mvn clean install`
+               echo("Start Build...")
+               sh("./mvnw clean compile this file")
+               echo("Finish Build")
             }
         }
-        stage('Test') {
+
+        stage('Deployment') {
             steps {
-                echo 'Testing...'
-                // Tambahkan perintah testing di sini, misalnya `mvn test`
+               echo("start build...")
+               sh("./mvnw test")
+               echo("Finish Build")
             }
         }
-        stage('Deploy') {
+
+        stage('Production') {
             steps {
-                echo 'Deploying...'
-                // Tambahkan perintah deploy di sini
+                echo("Productionnnnn!!!!!")
             }
+        }
+    }
+    post {
+        success {
+            echo "Pipeline completed successfully!"
+        }
+        failure {
+            echo "Pipeline failed. Please check the logs."
         }
     }
 }
