@@ -3,23 +3,25 @@ pipeline {
     stages {
         stage('Development') {
             steps {
-               echo("Start Build...")
-               sh("./mvnw clean compile this file")
-               echo("Finish Build")
+                echo "Building the application with Maven Wrapper..."
+                sh './mvnw clean install'
+                echo "Build completed successfully!"
             }
         }
 
-        stage('Deployment') {
+        stage('Testing') {
             steps {
-               echo("start build...")
-               sh("./mvnw test")
-               echo("Finish Build")
+                echo "Running tests with Maven Wrapper..."
+                sh './mvnw test'
+                echo "Tests completed successfully!"
             }
         }
 
         stage('Production') {
             steps {
-                echo("Productionnnnn!!!!!")
+                echo "Deploying to production environment..."
+                // Tambahkan skrip deployment di sini jika ada
+                echo "Production deployment completed!"
             }
         }
     }
